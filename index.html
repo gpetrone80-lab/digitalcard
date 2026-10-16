@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0d10">
+    <meta name="description" content="Gianluca Petrone — Lieutenant Paramedic Hazmat Tech, Palm Harbor Fire Rescue. Digital business card.">
+    <meta property="og:title" content="Gianluca Petrone — Digital Business Card">
+    <meta property="og:description" content="Lieutenant Paramedic Hazmat Tech · Palm Harbor Fire Rescue">
+    <title>Gianluca Petrone — Digital Business Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #0b0d10;
+            --red: #d92323;
+            --red-deep: #7f1212;
+            --gold: #d9a441;
+            --panel: rgba(255, 255, 255, 0.045);
+            --panel-border: rgba(255, 255, 255, 0.09);
+            --text: #f5f5f4;
+            --muted: #a8a29e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1rem 2.5rem;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---------- layered background ---------- */
+        .bg-photo {
+            position: fixed; inset: 0; z-index: -3;
+            background-image: url('photo.jpg');
+            background-size: cover; background-position: center 20%;
+            filter: blur(28px) brightness(0.55) saturate(1.1);
+            opacity: 0.28;
+            transform: scale(1.15);
+            pointer-events: none;
+        }
+        .bg-glow {
+            position: fixed; inset: 0; z-index: -2; pointer-events: none;
+            background:
+                radial-gradient(600px 340px at 15% -5%, rgba(217, 35, 35, 0.22), transparent 70%),
+                radial-gradient(500px 380px at 90% 110%, rgba(217, 164, 65, 0.10), transparent 70%),
+                radial-gradient(700px 500px at 50% 45%, rgba(20, 22, 28, 0.0), rgba(11, 13, 16, 0.55) 100%);
+        }
+        .bg-stripes {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.5;
+            background: repeating-linear-gradient(
+                -55deg,
+                transparent 0 26px,
+                rgba(255, 255, 255, 0.014) 26px 28px
+            );
+            mask-image: linear-gradient(to bottom, black 0%, transparent 55%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 55%);
+        }
+
+        .card {
+            width: 100%; max-width: 420px;
+            display: flex; flex-direction: column; align-items: center;
+            z-index: 1;
+            animation: rise 0.6s ease both;
+        }
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------- hero ---------- */
+        .dept-logo-wrap {
+            margin-top: 1.75rem;
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 10px 14px;
+            border: 2px solid rgba(217, 164, 65, 0.65);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55), 0 0 0 5px rgba(217, 35, 35, 0.14);
+            line-height: 0;
+        }
+        .dept-logo-wrap img {
+            width: 108px; height: auto; display: block; border-radius: 12px;
+        }
+
+        .photo-ring {
+            margin-top: 1.1rem;
+            width: 164px; height: 164px; border-radius: 50%;
+            padding: 4px;
+            background: conic-gradient(from 200deg, var(--red), var(--gold), var(--red-deep), var(--red));
+            box-shadow: 0 10px 34px rgba(217, 35, 35, 0.35), 0 4px 14px rgba(0,0,0,0.5);
+        }
+        .photo-ring img {
+            width: 100%; height: 100%; border-radius: 50%;
+            object-fit: cover; object-position: top center;
+            border: 3px solid #101216;
+            display: block; background: #1a1d22;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            margin-top: 1rem; text-align: center; line-height: 1.15;
+        }
+        .name-rule {
+            width: 64px; height: 3px; border-radius: 2px;
+            background: linear-gradient(90deg, var(--red), var(--gold));
+            margin: 0.7rem auto 0.8rem;
+        }
+        .subtitle {
+            text-align: center; color: var(--muted);
+            font-size: 0.92rem; font-weight: 500; line-height: 1.55;
+        }
+        .subtitle strong { color: var(--text); font-weight: 600; }
+
+        /* ---------- link rows ---------- */
+        .link-container {
+            width: 100%; display: flex; flex-direction: column;
+            gap: 0.7rem; margin-top: 1.75rem;
+        }
+        .section-label {
+            font-size: 0.68rem; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--muted);
+            margin: 0.6rem 0 -0.15rem 0.25rem;
+        }
+
+        .btn-link {
+            display: flex; align-items: center;
+            width: 100%; padding: 0.55rem 0.9rem 0.55rem 0.55rem;
+            border-radius: 14px; text-decoration: none;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            color: var(--text); font-weight: 500; font-size: 0.93rem;
+            transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        }
+        .btn-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(217, 35, 35, 0.55);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(217, 35, 35, 0.25);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .btn-link:active { transform: translateY(0); }
+
+        .icon-tile {
+            width: 46px; height: 46px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 1.15rem; color: #fff;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 3px 8px rgba(0,0,0,0.35);
+        }
+        .tile-green  { background: linear-gradient(135deg, #22c55e, #15803d); }
+        .tile-teal   { background: linear-gradient(135deg, #2dd4bf, #0f766e); }
+        .tile-amber  { background: linear-gradient(135deg, #f59e0b, #b45309); }
+        .tile-blue   { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .tile-violet { background: linear-gradient(135deg, #a78bfa, #6d28d9); }
+        .tile-orange { background: linear-gradient(135deg, #fb7185, #be123c); }
+        .tile-cyan   { background: linear-gradient(135deg, #22d3ee, #0e7490); }
+        .tile-fb     { background: linear-gradient(135deg, #2f7cf6, #1558c9); }
+        .tile-ig     { background: linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7); }
+
+        .btn-text { flex-grow: 1; padding: 0 0.75rem; line-height: 1.35; }
+        .btn-text small { display: block; color: var(--muted); font-size: 0.72rem; font-weight: 500; }
+
+        .chev { color: var(--muted); font-size: 0.8rem; opacity: 0.6; }
+
+        .actions-right { display: flex; gap: 0.9rem; align-items: center; padding-right: 0.25rem; }
+        .action-mini {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--gold); text-decoration: none;
+            font-size: 0.62rem; font-weight: 700; letter-spacing: 0.5px;
+            text-transform: uppercase; cursor: pointer;
+            transition: color 0.18s ease, transform 0.18s ease;
+        }
+        .action-mini i { font-size: 1.05rem; margin-bottom: 3px; }
+        .action-mini:hover { color: #fff; transform: translateY(-1px); }
+
+        /* ---------- vCard CTA ---------- */
+        .vcard-btn {
+            margin-top: 1.1rem; width: 100%;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+            padding: 0.95rem; border-radius: 14px;
+            background: linear-gradient(135deg, #e53232, #a31212);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: #fff; text-decoration: none;
+            font-weight: 700; font-size: 0.92rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            box-shadow: 0 8px 24px rgba(217, 35, 35, 0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+        }
+        .vcard-btn:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 12px 30px rgba(217,35,35,0.5); }
+        .vcard-btn:active { transform: translateY(0); }
+
+        /* ---------- share / QR ---------- */
+        .share-box {
+            margin-top: 1.4rem; width: 100%;
+            background: var(--panel); border: 1px solid var(--panel-border);
+            border-radius: 16px; padding: 1.25rem 1rem;
+            display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+        }
+        .share-box h2 {
+            font-family: 'Oswald', sans-serif; font-size: 0.95rem; font-weight: 600;
+            letter-spacing: 2.5px; text-transform: uppercase; color: var(--text);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .share-box h2 i { color: var(--red); }
+        .qr-frame {
+            background: #fff; padding: 12px; border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+            line-height: 0;
+        }
+        .qr-frame img, .qr-frame canvas { border-radius: 4px; }
+        .share-box p { color: var(--muted); font-size: 0.8rem; text-align: center; line-height: 1.5; }
+
+        footer {
+            margin-top: 1.75rem; text-align: center;
+            color: var(--muted); font-size: 0.72rem; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        footer i { color: var(--red); font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="bg-photo"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-stripes"></div>
+
+    <main class="card">
+        <div class="dept-logo-wrap"><img src="logo-phfr.png" alt="Palm Harbor Fire Rescue"></div>
+
+        <div class="photo-ring">
+            <img src="photo.jpg" alt="Gianluca Petrone" onerror="this.src='https://placehold.co/160x160/14171c/d9a441?text=GP'">
+        </div>
+
+        <h1>Gianluca Petrone</h1>
+        <div class="name-rule"></div>
+        <p class="subtitle"><strong>Lieutenant · Paramedic · Hazmat Technician</strong><br>Palm Harbor Fire Rescue</p>
+
+        <div class="link-container">
+            <div class="section-label">Call or Text</div>
+
+            <div class="btn-link">
+                <div class="icon-tile tile-green"><i class="fas fa-phone"></i></div>
+                <div class="btn-text">+1 (727) 501-4138<small>Cell</small></div>
+                <div class="actions-right">
+                    <a href="tel:+17275014138" class="action-mini"><i class="fas fa-phone"></i><span>Call</span></a>
+                    <a href="#" onclick="downloadVCard('cell'); return false;" class="action-mini"><i class="fas fa-address-card"></i><span>vCard</span></a>
+                </div>
+            </div>
+
+            <div class="btn-link">
+                <div class="icon-tile tile-teal"><i class="fas fa-phone"></i></div>
+                <div class="btn-text">+1 (727) 239-4534<small>Secondary</small></div>
+                <div class="actions-right">
+                    <a href="tel:+17272394534" class="action-mini"><i class="fas fa-phone"></i><span>Call</span></a>
+                    <a href="#" onclick="downloadVCard('secondary'); return false;" class="action-mini"><i class="fas fa-address-card"></i><span>vCard</span></a>
+                </div>
+            </div>
+
+            <div class="btn-link">
+                <div class="icon-tile tile-amber"><i class="fas fa-phone-volume"></i></div>
+                <div class="btn-text">+1 (727) 784-0454<small>Work</small></div>
+                <div class="actions-right">
+                    <a href="tel:+17277840454" class="action-mini"><i class="fas fa-phone"></i><span>Call</span></a>
+                    <a href="#" onclick="downloadVCard('work'); return false;" class="action-mini"><i class="fas fa-address-card"></i><span>vCard</span></a>
+                </div>
+            </div>
+
+            <div class="section-label">Email</div>
+
+            <a href="mailto:lpetrone@palmharborfd.com" class="btn-link">
+                <div class="icon-tile tile-blue"><i class="fas fa-envelope"></i></div>
+                <div class="btn-text">lpetrone@palmharborfd.com<small>Work email</small></div>
+                <i class="fas fa-chevron-right chev"></i>
+            </a>
+
+            <a href="mailto:gpetrone80@gmail.com" class="btn-link">
+                <div class="icon-tile tile-violet"><i class="fas fa-envelope"></i></div>
+                <div class="btn-text">gpetrone80@gmail.com<small>Personal email</small></div>
+                <i class="fas fa-chevron-right chev"></i>
+            </a>
+
+            <div class="section-label">Find Me</div>
+
+            <a href="https://maps.google.com/?q=250+West+Lake+Rd,+Palm+Harbor,+Florida+34684" target="_blank" rel="noopener" class="btn-link">
+                <div class="icon-tile tile-orange"><i class="fas fa-location-dot"></i></div>
+                <div class="btn-text">250 West Lake Rd, Palm Harbor, FL 34684<small>Open in Maps</small></div>
+                <i class="fas fa-chevron-right chev"></i>
+            </a>
+
+            <a href="https://trainingcadre.com" target="_blank" rel="noopener" class="btn-link">
+                <div class="icon-tile tile-cyan"><i class="fas fa-globe"></i></div>
+                <div class="btn-text">trainingcadre.com<small>Website</small></div>
+                <i class="fas fa-chevron-right chev"></i>
+            </a>
+
+            <div class="section-label">Social</div>
+
+            <a href="https://www.facebook.com/gianluca.petrone2" target="_blank" rel="noopener" class="btn-link">
+                <div class="icon-tile tile-fb"><i class="fab fa-facebook-f"></i></div>
+                <div class="btn-text">Connect on Facebook<small>@gianluca.petrone2</small></div>
+                <i class="fas fa-chevron-right chev"></i>
+            </a>
+
+            <a href="https://www.instagram.com/lucariello25/" target="_blank" rel="noopener" class="btn-link">
+                <div class="icon-tile tile-ig"><i class="fab fa-instagram"></i></div>
+                <div class="btn-text">Follow on Instagram<small>@lucariello25</small></div>
+                <i class="fas fa-chevron-right chev"></i>
+            </a>
+
+            <a href="#" onclick="downloadFullVCard(); return false;" class="vcard-btn">
+                <i class="fas fa-address-card"></i> Save Full Contact
+            </a>
+        </div>
+
+        <div class="share-box">
+            <h2><i class="fas fa-qrcode"></i> Share this card</h2>
+            <div class="qr-frame" id="qr"></div>
+            <p>Point a camera at this code — or tap an NFC tag<br>programmed with this page's link — to open the card.</p>
+        </div>
+
+        <footer><i class="fas fa-fire-flame-curved"></i> PALM HARBOR FIRE RESCUE · EST. SERVICE <i class="fas fa-fire-flame-curved"></i></footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // QR encodes this page's own URL — once hosted, it always points at the live card.
+        try {
+            new QRCode(document.getElementById('qr'), {
+                text: window.location.href,
+                width: 168, height: 168,
+                colorDark: '#101216', colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.M
+            });
+        } catch (e) { document.getElementById('qr').style.display = 'none'; }
+
+        function downloadFullVCard() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Gianluca Petrone
+N:Petrone;Gianluca;;;
+TITLE:Lieutenant Paramedic Hazmat Tech
+ORG:Palm Harbor Fire Rescue
+TEL;TYPE=CELL,VOICE:+17275014138
+TEL;TYPE=HOME,VOICE:+17272394534
+TEL;TYPE=WORK,VOICE:+17277840454
+EMAIL;TYPE=WORK:lpetrone@palmharborfd.com
+EMAIL;TYPE=HOME:gpetrone80@gmail.com
+ADR;TYPE=WORK:;;250 West Lake Rd;Palm Harbor;FL;34684;USA
+URL:https://trainingcadre.com
+URL;TYPE=Facebook:https://www.facebook.com/gianluca.petrone2
+URL;TYPE=Instagram:https://www.instagram.com/lucariello25/
+END:VCARD`;
+            createDownloadLink(vCardData, 'Gianluca_Petrone.vcf');
+        }
+
+        function downloadVCard(type) {
+            let tel = '';
+            if (type === 'cell') tel = 'TEL;TYPE=CELL,VOICE:+17275014138';
+            if (type === 'secondary') tel = 'TEL;TYPE=HOME,VOICE:+17272394534';
+            if (type === 'work') tel = 'TEL;TYPE=WORK,VOICE:+17277840454';
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Gianluca Petrone
+N:Petrone;Gianluca;;;
+TITLE:Lieutenant Paramedic Hazmat Tech
+ORG:Palm Harbor Fire Rescue
+${tel}
+END:VCARD`;
+            createDownloadLink(vCardData, `Gianluca_Petrone_${type}.vcf`);
+        }
+
+        function createDownloadLink(data, filename) {
+            const blob = new Blob([data], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('hidden', '');
+            a.setAttribute('href', url);
+            a.setAttribute('download', filename);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
